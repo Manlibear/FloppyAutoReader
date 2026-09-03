@@ -1,0 +1,11 @@
+[Unit]
+Description=Floppy Auto Reader
+After=graphical-session.target
+
+[Service]
+WorkingDirectory=%h/Applications/floppyautoreader
+ExecStart=%h/Applications/floppyautoreader/FloppyAutoReader.Linux
+Restart=on-failure
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="FloppyAutoReader.Core/FloppyAutoReader.Core.csproj" />
+  <Project Path="FloppyAutoReader.Linux/FloppyAutoReader.Linux.csproj" />
+  <Project Path="FloppyAutoReader.Windows/FloppyAutoReader.Windows.csproj" />
+</Solution>
