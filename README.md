@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="FloppyAutoReader.Core/Assets/icon.png" width="256" alt="Floppy Auto Reader icon">
+</p>
+
 # Floppy Auto Reader
 
 Watches for a mounted floppy disk (only currently via USB external readers, internal ones will need some work since they won't generate udev events (I think, right?) in Linux on insert/remove, have to poke at /dev/fd0) and auto-launches whatever game is mapped to the current machine in that disk's `game.dsk` file.
