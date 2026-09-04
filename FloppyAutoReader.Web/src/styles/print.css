@@ -1,0 +1,36 @@
+@page {
+  size: A4;
+  margin: 0;
+}
+
+@media print {
+  html,
+  body {
+    background: #fff;
+  }
+
+  .app-sidebar {
+    display: none !important;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  .a4-sheet,
+  .a4-sheet * {
+    visibility: visible;
+  }
+
+  .a4-sheet {
+    display: block !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-shadow: none;
+  }
+
+  .cell-wrapper {
+    border: none;
+  }
+}

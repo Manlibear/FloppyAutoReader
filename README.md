@@ -6,6 +6,8 @@
 
 Watches for a mounted floppy disk (only currently via USB external readers, internal ones will need some work since they won't generate udev events (I think, right?) in Linux on insert/remove, have to poke at /dev/fd0) and auto-launches whatever game is mapped to the current machine in that disk's `game.dsk` file.
 
+I've also hosted a tool to for making printable labels. It's default set up for LabelPlanet UK LP10/70, but you can configure different sizes/spacing for just about any sheet of sticky labels, and then print straight from the site. Parts of the site were made with AI, see the bottom of this README for full AI disclosure.
+
 ## How it works
 
 1. `game.dsk` lives at the root of the disk and is a JSON object mapping machine name -> launch target, e.g.:
@@ -27,6 +29,7 @@ Watches for a mounted floppy disk (only currently via USB external readers, inte
 FloppyAutoReader.Core/     shared logic, no OS-specific dependencies
 FloppyAutoReader.Windows/  Windows Service, WMI drive detection, ShellExecute launch
 FloppyAutoReader.Linux/    systemd unit, inotify-based drive detection, xdg-open launch
+FloppyAutoReader.Web/      Vite based site for creating printable labels
 ```
 
 `FloppyAutoReader.Core` owns the mapping-file parsing, hash-based dedupe, and machine-name matching (`DiskWatcherService`) behind two interfaces each platform project implements:
@@ -103,3 +106,7 @@ To uninstall:
 systemctl --user disable --now floppyautoreader.service
 rm ~/.config/systemd/user/floppyautoreader.service
 ```
+
+# AI Disclosure
+
+The FloppyAutoReader.Web site was made with the assistance of Claude Code. I'm not a frontend person and don't really know how to make decent looking/performing JS sites, so I used Claude Code to generate the base and I built on it from there.
