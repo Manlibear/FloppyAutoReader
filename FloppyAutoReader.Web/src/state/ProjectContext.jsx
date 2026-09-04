@@ -3,15 +3,15 @@ import { coverFitLayer } from '../lib/render';
 import { loadProject, saveProject } from '../lib/storage';
 
 const DEFAULT_GRID = {
-  columns: 3,
-  rows: 4,
-  cellWidthMm: 60,
-  cellHeightMm: 60,
-  cornerRadiusMm: 6,
-  gapXMm: 5,
-  gapYMm: 5,
-  marginLeftMm: 10,
-  marginTopMm: 10,
+  columns: 2,
+  rows: 5,
+  cellWidthMm: 70,
+  cellHeightMm: 52,
+  cornerRadiusMm: 0,
+  gapXMm: 24,
+  gapYMm: 0,
+  marginLeftMm: 23,
+  marginTopMm: 18.5,
 };
 
 const DEFAULT_PROJECT = {
