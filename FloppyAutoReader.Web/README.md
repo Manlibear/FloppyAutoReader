@@ -131,37 +131,3 @@ npx oxlint             # lint (two pre-existing benign warnings are expected:
 ```
 
 No test suite exists yet.
-
-## Deploying on bear-server
-
-This machine (`manlibear@bear-server`) is where it's meant to end up, but
-`/srv/http/` is root-owned and `manlibear` does **not** have passwordless
-sudo — so any agent working on this later will hit a permissions wall trying
-to write there directly. The pattern used for other projects on this box
-(see `/srv/http/gamesbacklog`) is a one-time manual step:
-
-```bash
-# the human runs this once, interactively (needs sudo password):
-sudo mkdir -p /srv/http/floppylabels
-sudo chown manlibear:manlibear /srv/http/floppylabels
-```
-
-After that exists and is owned by `manlibear`, deploying is just: build
-locally, then ship `dist/` over:
-
-```bash
-npm run build
-tar -czf - dist | ssh manlibear@bear-server \
-  "rm -rf /srv/http/floppylabels/* && tar -xzf - -C /srv/http/floppylabels --strip-components=1"
-```
-
-It's a static single-page app — no build step needed on the server, no
-server-side routing, no API, no env vars. Point any web server's document
-root at the directory containing `index.html` and it works. (As of this
-writing the built files are parked at `~/Projects/FloppyLabels/dist` on
-bear-server, *not yet* moved into `/srv/http/` — that move was left for the
-human to do once the `/srv/http/floppylabels` directory exists.)
-
-Source lives at `~/Projects/FloppyLabels` on bear-server too (synced via the
-same `tar | ssh` approach, minus `node_modules`/`dist`/`.git`), purely so it
-can be reached from other machines — it is not built/served from there.
